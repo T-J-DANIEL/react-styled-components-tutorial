@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "styled-components"
+import GlobalStyles from "./components/styles/Global"
+//import theme provider to enable themes like a context provider, it takes in a theme prop we provide this js object with styles in key value pairs or whatever
+//see global file for global styles we import it and it just works
+import { Container } from "./components/styles/Container.style"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from "./components/Header"
+
+//you can put this theme OBJECT in a separate file if you wish (it may be better)
+const theme = {
+  colors:{
+    header:'#ebfbff',
+    body:'#fff',
+    footer:'#003333'
+  }
 }
 
-export default App;
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Container>
+        <h1>Hubble</h1>
+      </Container>
+      <Header />
+    </ThemeProvider>
+  )
+}
+
+
